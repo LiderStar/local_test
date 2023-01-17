@@ -28,7 +28,7 @@ class Book(models.Model):
     title = models.CharField(max_length=256, verbose_name="TITLE")
     amount = models.IntegerField(verbose_name="AMOUNT")
     price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="PRICE")
-    client = models.ManyToManyField(Client, null=True)
+    client = models.ManyToManyField(Client)
 
     def __str__(self):
         return self.title

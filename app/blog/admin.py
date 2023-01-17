@@ -6,4 +6,5 @@ from .models import Post
 
 @admin.register(Post)
 class AdminPost(admin.ModelAdmin):
-    list_display = ['title', 'content', ]
+    prepopulated_fields = {"slug": ("title",)}
+    list_display = ['title', 'date_create', 'date_update', 'author', ]
