@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_ckeditor_5',
     'django_extensions',
+    'taggit',
     "store.apps.StoreConfig",
     "blog.apps.BlogConfig",
     "debug_toolbar",
@@ -313,4 +314,3 @@ EMAIL_PORT = 587  # os.environ.get('Port')
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rest.settings')
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 # End For jyputer
-
