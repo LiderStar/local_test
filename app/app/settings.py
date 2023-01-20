@@ -161,7 +161,8 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = [
-    "store/static/store",
+    "store/static/", # папку в которой статика указывать не нужно
+    "blog/static/", # папку в которой статика указывать не нужно
 ]
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',

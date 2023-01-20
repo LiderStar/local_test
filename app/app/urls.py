@@ -22,7 +22,7 @@ from app import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("store/", include('store.urls')),
-    path("blog/", include('blog.urls')),
+    path("", include('blog.urls')),
     path('accounts/', include('allauth.urls')),
     # path('__debug__/', include('debug_toolbar.urls')),
 ]
