@@ -24,15 +24,12 @@ urlpatterns = [
     path("store/", include('store.urls')),
     path("", include('blog.urls')),
     path('accounts/', include('allauth.urls')),
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
     # path('__debug__/', include('debug_toolbar.urls')),
 ]
 
-urlpatterns += [
-                   path("ckeditor5/", include('django_ckeditor_5.urls')),
-               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns = [
+    urlpatterns += [
         path('__debug__/', include('debug_toolbar.urls')),
-    ] + urlpatterns
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
