@@ -61,9 +61,12 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'django_extensions',
     'taggit',
-    "store.apps.StoreConfig",
-    "blog.apps.BlogConfig",
     "debug_toolbar",
+
+
+
+    # "store.apps.StoreConfig",
+    "blog.apps.BlogConfig",
 
 ]
 SITE_ID = 1
@@ -161,8 +164,8 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = [
-    "store/static/", # папку в которой статика указывать не нужно
-    "blog/static/", # папку в которой статика указывать не нужно
+    "store/static/",  # папку в которой статика указывать не нужно
+    "blog/static/",  # папку в которой статика указывать не нужно
 ]
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',

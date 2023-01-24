@@ -8,8 +8,9 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
-def blog(request):
-    return HttpResponse("Hello", request)
+def index(request):
+    context = {"title": "Blog page"}
+    return render(request, "blog/base_blog.html", context=context)
 
 
 class UserPostListView(ListView):
