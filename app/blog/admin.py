@@ -7,4 +7,8 @@ from .models import Post
 @admin.register(Post)
 class AdminPost(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['title', 'date_create', 'date_update', 'author', ]
+    list_display = ['title', 'date_create', 'date_update', 'author', 'is_published']
+    list_display_links = ['title']
+    search_fields = ['title', 'content', 'author']
+    list_editable = ('is_published',)
+    list_filter = ('title', 'content', 'author',)

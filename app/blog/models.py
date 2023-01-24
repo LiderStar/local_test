@@ -9,24 +9,26 @@ from django_ckeditor_5.fields import CKEditor5Field
 
 class Post(models.Model):
     class Meta:
-        verbose_name = 'Create post'
-        verbose_name_plural = "Create post's"
+        verbose_name = 'Создать пост'
+        verbose_name_plural = "Создать посты"
+        ordering = ['date_create']
 
-    title = models.CharField(max_length=256, db_index=True, help_text="Не больше 256 символов")
+    title = models.CharField(max_length=256, db_index=True, help_text="Не больше 256 символов", verbose_name="Название")
     # content = models.TextField(blank=True, null=True)
-    content = CKEditor5Field(max_length=5000, blank=True, null=True, help_text="Не больше 5000 символов")
-    date_create = models.DateTimeField(default=timezone.now)
+    content = CKEditor5Field(max_length=5000, blank=True, null=True, help_text="Не больше 5000 символов", verbose_name="Контент")
+    date_create = models.DateTimeField(default=timezone.now, verbose_name="Дата создания")
     date_update = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(User, on_delete=models.PROTECT)
+    author = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Автор")
+    is_published = models.BooleanField(default=True)
     slug = models.SlugField(max_length=50, unique=True)
-    likes = models.ManyToManyField(User, related_name='likes_post', blank=True)
+    likes = models.ManyToManyField(User, related_name='likes_post', blank=True, verbose_name="Лайки")
     reply = models.ForeignKey('self', null=True, related_name='reply_post', on_delete=models.CASCADE)
 
     def total_likes(self):
         return self.likes.count()
 
     def get_absolute_url(self):
-        return reverse('blog:user_posts_list', kwargs={'username': self.author})
+        return reverse('user_posts_list', kwargs={'username': self.author})
 
     def __str__(self):
         return self.title

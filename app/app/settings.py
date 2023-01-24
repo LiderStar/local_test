@@ -65,7 +65,7 @@ INSTALLED_APPS = [
 
 
 
-    # "store.apps.StoreConfig",
+    "store.apps.StoreConfig",
     "blog.apps.BlogConfig",
 
 ]
