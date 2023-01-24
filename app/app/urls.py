@@ -5,7 +5,7 @@ from app import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("store/", include('store.urls')),
+    # path("store/", include('store.urls')),
     path("", include('blog.urls')),
     path('accounts/', include('allauth.urls')),
     path("ckeditor5/", include('django_ckeditor_5.urls')),

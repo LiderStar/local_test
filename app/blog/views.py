@@ -10,7 +10,12 @@ from django.shortcuts import get_object_or_404
 
 def index(request):
     context = {"title": "Blog page"}
-    return render(request, "blog/base_blog.html", context=context)
+    return render(request, "blog/base_blog.html", context)
+
+
+def signup(request):
+    context = {"title": "Signup page"}
+    return render(request, "blog/signup.html", context)
 
 
 class UserPostListView(ListView):
@@ -25,10 +30,7 @@ class UserPostListView(ListView):
     #     context['users_posts'] = queryset.order_by('-title')
     #     return context
     context_object_name = 'users_posts'
-    
+
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by('-title')
-
-
-

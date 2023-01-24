@@ -28,7 +28,27 @@ class Post(models.Model):
         return self.likes.count()
 
     def get_absolute_url(self):
-        return reverse('user_posts_list', kwargs={'username': self.author})
+        return reverse('user_posts_list', kwargs={'username': self.pk})
 
     def __str__(self):
         return self.title
+
+
+class Profile(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Автор")
+    about = models.TextField(max_length=5000, verbose_name='О себе', help_text='Не больше 5000 символов')
+    profile_img = models.ImageField(upload_to='profile_images/%Y/%m/%D/', default='blank-profile-picture.png', verbose_name="Аватар")
+    location = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return self.author.username
+
+    # def get_absolute_url(self):
+    #     return reverse('user_posts_list', kwargs={'username': self.author})
+
+    class Meta:
+        verbose_name = 'Создать профиль'
+        verbose_name_plural = "Создать профили"
+        ordering = ['-author']
+
+
