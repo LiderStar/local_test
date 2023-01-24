@@ -12,17 +12,13 @@
     <title>{% block title %}My amazing site{% endblock %}</title>
 </head>
 <body>
-<div id="sidebar">
-    {% block sidebar %}
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog/">Blog</a></li>
-    </ul>
-    {% endblock %}
-</div>
+{% include "app/nav.html" %}
+
 
 <div id="content">
-    {% block content %}{% endblock %}
+    {% block content %}
+Base block
+    {% endblock %}
 </div>
 <script crossorigin="anonymous"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

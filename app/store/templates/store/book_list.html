@@ -1,0 +1,22 @@
+{% extends "store/base_store.html" %}
+
+{% block content %}
+
+    <div class="card">
+    {% for book in book_list%}
+    <p class="card-body">
+    <h5 class="card-title"> {{book.title}} </h5>
+    <p class="card-text">{{ book.anotation|linebreaks}}</p>
+    <a href="#" class="btn btn-primary">{{book.author}}</a>
+    <p class="btn btn-primary"> Price: {{ book.price }}</p>
+{%endfor%}
+  </div>
+
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db import models
@@ -26,7 +26,7 @@ class Post(models.Model):
         return self.likes.count()
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+        return reverse('blog:user_posts_list', kwargs={'username': self.author})
 
     def __str__(self):
         return self.title

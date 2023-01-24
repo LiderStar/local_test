@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse, reverse_lazy
 from django_ckeditor_5.fields import CKEditor5Field
 
 
@@ -22,13 +23,20 @@ class Client(models.Model):
     email = models.EmailField()
     discount = models.DecimalField(max_digits=2, decimal_places=1, verbose_name="DISCOUNT")
 
+    def __str__(self):
+        return self.firstname
 
 class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=256, verbose_name="TITLE")
     amount = models.IntegerField(verbose_name="AMOUNT")
     price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="PRICE")
+    anotation = models.TextField(max_length=2000, blank=True)
     client = models.ManyToManyField(Client)
+
+    def get_absolute_url(self):
+        return reverse('store:author_list', kwargs={'author': self.author})
 
     def __str__(self):
         return self.title
+
