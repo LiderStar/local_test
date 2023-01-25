@@ -6,7 +6,7 @@ from . import views
 from .views import BookViewSet, BookListView, AuthorListView
 
 router = SimpleRouter()
-router.register(r'booki', BookViewSet)
+router.register(r'book', BookViewSet)
 
 urlpatterns = [
     path("", views.index, name="index"),

@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import ListView
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Book, Author
@@ -21,6 +23,15 @@ class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BooksSerializers
     queryset = Book.objects.all()
     serializer = BooksSerializers(queryset)
+    # http://127.0.0.1:8000/store/book/?ordering=title
+    # http://127.0.0.1:8000/store/book/?ordering=price
+    # http://127.0.0.1:8000/store/book/?price=147
+    # http://127.0.0.1:8000/store/book/?price=147
+    # http://127.0.0.1:8000/store/book/?search=Crispy
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter] # фильтрация, поиск, сортировка
+    filterset_fields = ['price']
+    search_fields = ['author__name', 'title'] # Нельзя искать по первичному ключу нужно __
+    ordering_fields = ['title', 'price']
 
 
 class BookListView(ListView):
