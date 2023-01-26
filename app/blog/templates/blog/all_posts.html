@@ -1,0 +1,19 @@
+{% extends "blog/base_blog.html" %}
+{% block title %}
+{% if post %}
+    {{ post.title }}
+    {% else %}
+    Все посты {{ post.author }}
+    {% endif %}
+{% endblock %}
+{% block content %}
+
+{% for post in all_posts %}
+   <p>{{post.title}}</p>
+   <p>{{post.author}}</p>
+   <p>{{post.date_create}}</p>
+   <p>{{post.content|truncatewords:20|safe}}</p>
+
+{% endfor %}
+
+{% endblock content %}

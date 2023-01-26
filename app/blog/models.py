@@ -28,7 +28,7 @@ class Post(models.Model):
         return self.likes.count()
 
     def get_absolute_url(self):
-        return reverse('user_posts_list', kwargs={'username': self.pk})
+        return reverse('user_posts_list', kwargs={'username': self.author})
 
     def __str__(self):
         return self.title
