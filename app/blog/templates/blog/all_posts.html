@@ -1,19 +1,31 @@
 {% extends "blog/base_blog.html" %}
 {% block title %}
-{% if post %}
-    {{ post.title }}
+    {% if post %}
+        {{ post.title }}
     {% else %}
-    Все посты {{ post.author }}
+        Все посты {{ post.author }}
     {% endif %}
 {% endblock %}
 {% block content %}
+    <div class="card">
+         {% for post in all_posts %}
+        <h5 class="card-header"> {{ post.author }} | {{ post.date_create }}</h5>
+        <div class="card-body">
+            <h5 class="card-title">  {{ post.title }}</h5>
+            <p class="card-text"> {{ post.content|truncatewords:20|safe }}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+     {% endfor %}
+    </div>
 
-{% for post in all_posts %}
-   <p>{{post.title}}</p>
-   <p>{{post.author}}</p>
-   <p>{{post.date_create}}</p>
-   <p>{{post.content|truncatewords:20|safe}}</p>
 
-{% endfor %}
+
+
+
+
+
+
+
+
 
 {% endblock content %}

@@ -46,6 +46,12 @@
                 {#            <li><a class="dropdown-item" href="{{ book.get_absolute_url }}">Книги по авторам</a></li>#}
                 {#          </ul>#}
                 {#        </li>#}
+             <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url "add_post" %}">Add post</a>
+                </li>
+             <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url "add_post_model" %}">Add post model</a>
+                </li>
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Пошук" aria-label="Пошук">

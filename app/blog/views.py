@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
+
+from blog.forms import PostAdd, PostAddForm
 from blog.models import Post
 from django.shortcuts import get_object_or_404
 
@@ -41,5 +43,29 @@ class AllPostListView(ListView):
     paginate_by = 50
     template_name = 'blog/all_posts.html'
     context_object_name = 'all_posts'
+
     def get_queryset(self):
-        return Post.objects.all().order_by('-title')
+        return Post.objects.all().order_by('-date_create')
+
+
+def add_post(request):
+    if request.method == "POST":
+        form = PostAdd(request.POST)
+        if form.is_valid():
+            post = Post.objects.create(**form.cleaned_data)
+            return redirect("all_posts_list")
+    else:
+        form = PostAdd()
+
+    return render(request, "blog/add_post.html", {"form": form})
+
+
+def add_post2(request):
+    if request.method == "POST":
+        form = PostAddForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            return redirect("all_posts_list")
+    else:
+        form = PostAddForm()
+    return render(request, "blog/add_post_model.html", {"form": form})

@@ -1,0 +1,16 @@
+{% extends "blog/base_blog.html" %}
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+{% block content %}
+    <h1>Форма не связана с моделью</h1>
+    <main class="container">
+        <div class="bg-light p-5 rounded">
+            <form action="{% url 'add_post' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary"> Добавить пост</button>
+            </form>
+        </div>
+    </main>
+{% endblock content %}
