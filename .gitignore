@@ -131,3 +131,4 @@ dmypy.json
 
 # Postgres
 base.backup
+.idea/
