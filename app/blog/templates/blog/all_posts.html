@@ -8,25 +8,25 @@
 {% endblock %}
 {% block content %}
     <div class="card">
-         {% for post in all_posts %}
-        <h5 class="card-header"> {{ post.author }} | {{ post.date_create }}</h5>
-        <div class="card-body">
-            <h5 class="card-title">  {{ post.title }}</h5>
-            <p class="card-text"> {{ post.content|truncatewords:20|safe }}</p>
-            <a input class="btn btn-primary" type="submit" href="{{ post.get_absolute_url }}">Читать дальше</a>
-
-        </div>
-     {% endfor %}
+        {% for post in all_posts %}
+            <h5 class="card-header"> {{ post.author }} | {{ post.date_create }}</h5>
+            <div class="card mb-3">
+            <div class="card-body">
+                    <div class="media">
+                        {% if item.photo %}
+                            <img src="{{ news_item.photo.url }}" alt="" width="150" class="mr-3">
+                        {% else %}
+                            <img src="https://picsum.photos/id/1060/150/135/?blur=2" alt="" class="mr-3">
+                        {% endif %}
+                        <div class="media-body">
+                            <h5 class="card-title">  {{ post.title }}</h5>
+                            <p class="card-text"> {{ post.content|truncatewords:20|safe}}</p>
+                            <a input class="btn btn-primary" type="submit" href="{{ post.get_absolute_url }}">Читать
+                                дальше</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+        {% endfor %}
     </div>
-
-
-
-
-
-
-
-
-
-
-
 {% endblock content %}
