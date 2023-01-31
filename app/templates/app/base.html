@@ -14,16 +14,16 @@
 </head>
 <body>
 {% include "app/nav.html" %}
- <div class="container-fluid">
+ <div class="container-fluid mt-3">
         <div class="row content">
-            <div class="col-sm-2 sidenav text-center">
+            <div class="col-md-2 sidenav text-center">
                 {% block left %}
                 <p><a href="#">Link</a></p>
                 <p><a href="#">Link</a></p>
                 <p><a href="#">Link</a></p>
                 {% endblock %}
             </div>
-            <div class="col-sm-8 text-left">
+            <div class="col-md-8 text-left">
                 {% block content %}
                 <h1>Welcome</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
@@ -38,7 +38,7 @@
 
 
             {% block right %}
-                <div class="col-sm-2 sidenav text-center">
+                <div class="col-md-2 sidenav text-center">
                     <div class="well">
                         <p>ADS</p>
                     </div>
