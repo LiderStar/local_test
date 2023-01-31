@@ -1,17 +1,20 @@
 {% extends "blog/base_blog.html" %}
 {% block title %}
-{% if post %}
-    {{ post.title }}
+    {% if post %}
+        {{ post.title }}
     {% else %}
-    Все посты {{ post.author }}
+        Все посты {{ post.author }}
     {% endif %}
 {% endblock %}
 {% block content %}
+    <div class="card">
+        {% for post in users_posts %}
+            <h5 class="card-header">  {{ post.title }} | {{ post.date_create }}</h5>
+            <div class="card-body">
+                <p class="card-text"> {{ post.content|truncatewords:20|safe }}</p>
+                <a input class="btn btn-primary" type="submit" href="{{ post.get_absolute_url }}">Читать дальше</a>
+            </div>
 
-{% for post in users_posts %}
-   <p>{{post.title}}</p>
-
-{% endfor %}
-
-
+        {% endfor %}
+    </div>
 {% endblock content %}
