@@ -10,7 +10,7 @@
    
         {% for post in all_posts %}
         <div class="card mb-3">
-            <h5 class="card-header"> {{ post.author }} | {{ post.date_create }}</h5>
+            <div class="card-header"> {{ post.author }} | {{ post.date_create }}</div>
             
             <div class="card-body">
                     <div class="media">
@@ -29,5 +29,7 @@
                     </div>
                 </div>
         {% endfor %}
-    
+
 {% endblock content %}
+
+<!-- https://codepen.io/lauramaccarley/pen/gOgbdaJ -->
