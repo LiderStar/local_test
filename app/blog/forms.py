@@ -23,10 +23,11 @@ class PostAddForm(forms.ModelForm):
     class Meta:
         model = Post
         # fields = '__all__'
-        fields = ['title', 'content', 'author', 'is_published']
+        fields = ['title', 'content', 'author', 'is_published', 'slug']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
             'author': forms.Select(attrs={'class': 'form-control'}),
             'is_published': forms.NullBooleanSelect(),
+            'slug': forms.TextInput(attrs={'class': 'form-control'}),
         }

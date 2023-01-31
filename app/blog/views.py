@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView
 
 from blog.forms import PostAdd, PostAddForm
 from blog.models import Post
@@ -35,7 +36,7 @@ class UserPostListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(author=user).order_by('-title')
+        return Post.objects.filter(author=user.id).order_by('-title')
 
 
 class AllPostListView(ListView):
@@ -60,12 +61,26 @@ def add_post(request):
     return render(request, "blog/add_post.html", {"form": form})
 
 
-def add_post2(request):
-    if request.method == "POST":
-        form = PostAddForm(request.POST)
-        if form.is_valid():
-            post = form.save()
-            return redirect("all_posts_list")
-    else:
-        form = PostAddForm()
-    return render(request, "blog/add_post_model.html", {"form": form})
+# def add_post2(request):
+#     if request.method == "POST":
+#         form = PostAddForm(request.POST)
+#         if form.is_valid():
+#             post = form.save()
+#             return redirect("all_posts_list")
+#     else:
+#         form = PostAddForm()
+#     return render(request, "blog/add_post_model.html", {"form": form})
+
+
+class CreatePost(CreateView):
+    form_class = PostAddForm
+    template_name = "blog/add_post_model.html"
+    success_url = reverse_lazy('all_posts_list')
+
+
+class ViewPost(DetailView):
+    model = Post
+    template_name = "blog/view_post.html"
+    context_object_name = 'post_item'
+    # slug_url_kwarg = 'post_slug'
+

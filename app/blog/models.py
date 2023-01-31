@@ -28,7 +28,8 @@ class Post(models.Model):
         return self.likes.count()
 
     def get_absolute_url(self):
-        return reverse('user_posts_list', kwargs={'username': self.author})
+        return reverse_lazy('view_post', kwargs={'slug': self.slug})
+        # return f'/posts/{self.slug}/'
 
     def __str__(self):
         return self.title
@@ -42,9 +43,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.author.username
-
-    # def get_absolute_url(self):
-    #     return reverse('user_posts_list', kwargs={'username': self.author})
 
     class Meta:
         verbose_name = 'Создать профиль'
