@@ -6,15 +6,70 @@
         Все посты {{ post.author }}
     {% endif %}
 {% endblock %}
-{% block content %}
-    <div class="card">
-        {% for post in users_posts %}
-            <h5 class="card-header">  {{ post.title }} | {{ post.date_create }}</h5>
-            <div class="card-body">
-                <p class="card-text"> {{ post.content|truncatewords:20|safe }}</p>
-                <a input class="btn btn-primary" type="submit" href="{{ post.get_absolute_url }}">Читать дальше</a>
-            </div>
 
-        {% endfor %}
-    </div>
+
+{% block content %}
+{#    <div class="card">#}
+{#        {% for post in users_posts %}#}
+{#            <h5 class="card-header">  {{ post.title }} | {{ post.date_create }}</h5>#}
+{#            <div class="card-body">#}
+{#                <p class="card-text"> {{ post.content|truncatewords:20|safe }}</p>#}
+{#                <a input class="btn btn-primary" type="submit" href="{{ post.get_absolute_url }}">Читать дальше</a>#}
+{#            </div>#}
+{##}
+{#        {% endfor %}#}
+{#    </div>#}
+
+ {% for post in users_posts %}
+    <div class="container">
+        <div class="card mb-2">
+{#            <div class="card-header"> {{ post.author }} | {{ post.date_create }}</div>#}
+                <div class="row">
+                    <div class="col-md-4">
+                        {% if item.photo %}
+                            <img src="{{ news_item.photo.url }}" alt="" class="img-fluid">
+                        {% else %}
+                            <img src="https://picsum.photos/id/1060/250/235/?blur=2" alt=""
+                                 class="img-fluid">
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-8">
+
+                        <h3 class="card-title text-center mt-3">  {{ post.title }}</h3>
+                        <p class="card-text">  {{ post.content|truncatewords:20|safe }}</p>
+                        <h5 class="card-title mb-3">  {{ post.date_create }}</h5>
+                        <a class="btn btn-primary" type="submit" href="{{ post.get_absolute_url }}">Читать
+                            дальше</a>
+{#                        <div> {{ post.date_create }}</div>#}
+                    </div>
+            </div>
+        </div>
+</div>
+{#        </div>#}
+    {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock content %}
