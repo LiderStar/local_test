@@ -5,8 +5,12 @@
   {% endblock %}
 {% block content %}
     <div class="card">
+
         <h5 class="card-header"> {{ post_item.author }} | {{ post_item.date_create }}</h5>
-        <div class="card-body">
+
+             <div> <img src="https://picsum.photos/id/1060/250/235/?blur=2" alt=""
+                                 class="img-fluid rounded-start mr-3"></div>
+           <div class="card-body">
             <h5 class="card-title">  {{ post_item.title }}</h5>
             <p class="card-text"> {{ post_item.content|safe }}</p>
 

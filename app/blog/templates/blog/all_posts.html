@@ -7,28 +7,33 @@
     {% endif %}
 {% endblock %}
 {% block content %}
-   
-        {% for post in all_posts %}
-        <div class="card mb-3">
-            <div class="card-header"> {{ post.author }} | {{ post.date_create }}</div>
-            
-            <div class="card-body">
-                    <div class="media">
+
+
+    {% for post in all_posts %}
+        <div class="container">
+        <div class="card mb-2">
+{#            <div class="card-header"> {{ post.author }} | {{ post.date_create }}</div>#}
+                <div class="row g-5 justify-content-evenly">
+                    <div class="col-md-4">
                         {% if item.photo %}
-                            <img src="{{ news_item.photo.url }}" alt="" width="150" class="mr-3">
+                            <img src="{{ news_item.photo.url }}" alt="" class="img-fluid">
                         {% else %}
-                            <img src="https://picsum.photos/id/1060/150/135/?blur=2" alt="" class="mr-3">
+                            <img src="https://picsum.photos/id/1060/250/235/?blur=2" alt=""
+                                 class="img-fluid">
                         {% endif %}
-                        <div class="media-body">
-                            <h5 class="card-title">  {{ post.title }}</h5>
-                            <p class="card-text"> {{ post.content|truncatewords:20|safe}}</p>
-                            <a input class="btn btn-primary" type="submit" href="{{ post.get_absolute_url }}">Читать
-                                дальше</a>
-                        </div>
                     </div>
+
+                    <div class="col-md-8">
+                        <h3 class="card-title text-center mt-3">  {{ post.title }}</h3>
+                        <p class="card-text"> {{ post.content|truncatewords:20|safe }}</p>
+                        <a class="btn btn-primary" type="submit" href="{{ post.get_absolute_url }}">Читать
+                            дальше</a>
                     </div>
-                </div>
-        {% endfor %}
+            </div>
+        </div>
+</div>
+{#        </div>#}
+    {% endfor %}
 
 {% endblock content %}
 
