@@ -8,18 +8,18 @@
 {% endblock %}
 {% block content %}
 
-
+<div class="container mb-3"></div>
     {% for post in all_posts %}
-        <div class="container">
-        <div class="card mb-2">
+        <div class="container mb-3">
+        <div class="card mb-3">
 {#            <div class="card-header"> {{ post.author }} | {{ post.date_create }}</div>#}
-                <div class="row">
+                <div class="row justify-content-evely">
                     <div class="col-md-4">
                         {% if item.photo %}
-                            <img src="{{ news_item.photo.url }}" alt="" class="img-fluid">
+                            <img src="{{ news_item.photo.url }}" alt="" class="card-img img-fluid rounded-start">
                         {% else %}
                             <img src="https://picsum.photos/id/1060/250/235/?blur=2" alt=""
-                                 class="img-fluid">
+                                 class="card-img img-fluid rounded-start">
                         {% endif %}
                     </div>
 
